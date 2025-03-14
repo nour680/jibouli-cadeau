@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiboli cadeau</title>
+    <link rel="icon" type="image/png" href="bir.png">
+    <style>
+        /* Background - Full Screen */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            background: url('bck.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative; /* Fix pour overlay */
+            box-sizing: border-box;
+        }
+
+        /* Dark Overlay for better readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* Centered container */
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        #countdown {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .celebrate {
+            display: none;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
+            margin-top: 20px;
+        }
+
+        /* Gift Section */
+        .gift-section {
+            margin-top: 20px;
+        }
+
+        .gift-section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Gift List */
+        .gift-list {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gift-list img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid white;
+            background: white;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            #countdown {
+                font-size: 18px;
+                padding: 8px;
+            }
+            .gift-list {
+                gap: 5px;
+            }
+            .gift-list img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 B9atlikom 🎉</h1>
+        <div id="countdown"></div>
+        <div class="celebrate">🎈🎂 HAPPY BIRTHDAY! 🎂🎈</div>
+
+        <div class="gift-section">
+            <h2>ila ma3rftouchi chno tjibouli 🎁</h2>
+            <div class="gift-list">
+                <img src="img/IMG_0522.JPG" alt="Gift option 1">
+                <img src="img/IMG_0525.JPG" alt="Gift option 2">
+                <img src="img/IMG_0548.JPG" alt="Gift option 3">
+                <img src="img/IMG_0550.jpg" alt="Gift option 4">
+            </div>
+        </div>
+    </div>
+
+    <script defer>
+        function updateCountdown() {
+            const birthday = new Date("March 16, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const difference = birthday - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").style.display = "none";
+                document.querySelector(".celebrate").style.display = "block";
+                return;
+            }
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `⏳ ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds left! ⏳`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+</body>
+</html>
